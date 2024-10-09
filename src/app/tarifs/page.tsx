@@ -3,58 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FaCheck } from "react-icons/fa";
 import { useState } from "react";
-
-const pricingPlans = [
-  {
-    name: "Basic",
-    description:
-      "Commencez avec les outils essentiels pour booster votre présence en ligne.",
-    monthlyPrice: 69,
-    annualPrice: 49,
-    link: "https://github.com/ansub/syntaxUI",
-    features: [
-      "Stratégie SEO & Recommandations",
-      "Analyse des concurrents pour vous démarquer",
-      "Une page ou multi-pages",
-      "Design sur mesure",
-      "Blogs et réseaux sociaux SEO optimisés",
-      "Formulaire de contact",
-      "Site web responsive",
-      "Domaine + hébergement gratuit ",
-      "Support et maintenance",
-    ],
-  },
-  {
-    name: "Professional",
-    description:
-      "Débloquez des fonctionnalités améliorées et du contenu premium pour booster votre entreprise.",
-    monthlyPrice: 299,
-    annualPrice: 199,
-    link: "https://github.com/ansub/syntaxUI",
-    features: [
-      "Tout dans le plan de base",
-      "Obtenez 25 blogs premium",
-      "Index jusqu&apos;à 20 pages",
-      "Support premium",
-      "SEO local",
-      "Agent SEO",
-    ],
-  },
-  {
-    name: "Premium",
-    description:
-      "Profitez de toutes les fonctionnalités de notre plan professionnel et plus encore.",
-    monthlyPrice: 2499,
-    annualPrice: 1666,
-    link: "https://github.com/ansub/syntaxUI",
-    features: [
-      "Tout dans le plan professionnel",
-      "Obtenez des blogs premium illimités",
-      "Ajoutez votre propre clé de modèle AI",
-      "Support premium & sessions de formation",
-    ],
-  },
-];
+import { pricingPlans } from "@/data/data";
 
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState<"M" | "A">("M");
@@ -87,26 +36,27 @@ const Pricing = () => {
         <button
           type="button"
           onClick={() => setBillingCycle("M")}
-          className={`rounded-lg px-4 py-2 text-sm font-medium ${
+          className={`rounded-lg px-6 py-2 text-base md:text-lg lg:text-xl font-medium font-marcellus ${
             billingCycle === "M"
               ? "bg-white text-black"
-              : "text-white bg-black hover:bg-white/80"
+              : "text-white bg-stone-800 hover:bg-white hover:text-black"
           }`}
         >
-          Monthly
+          Mois
           {billingCycle === "M" && <BackgroundShift shiftKey="monthly" />}
         </button>
         <button
           type="button"
           onClick={() => setBillingCycle("A")}
-          className={`rounded-lg px-4 py-2 text-sm font-medium ${
+          className={`rounded-lg px-4 py-2 text-base md:text-lg lg:text-xl font-medium font-marcellus ${
             billingCycle === "A"
               ? "bg-white text-black"
-              : "text-white bg-black hover:bg-black/80"
+              : "text-white bg-stone-800 hover:bg-black hover:text-white"
           }`}
         >
-          Annual
-          {billingCycle === "A" && <BackgroundShift shiftKey="annual" />}
+          Jours
+          {billingCycle === "A" && <BackgroundShift shiftKey="
+          jours" />}
         </button>
       </div>
     </div>
@@ -114,14 +64,25 @@ const Pricing = () => {
 
   const PricingCards = () => (
     <motion.div
-      className="relative grid  gap-8 lg:gap-4 mb-20 container mx-auto"
+      className="relative grid gap-8 lg:gap-4 mb-20 container mx-auto"
       style={{
         gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
       }}
     >
       {pricingPlans.map((plan, index) => (
-        <div
+        <motion.div
           key={index}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.8,
+              delay: 0.2 * index,
+              ease: "easeOut"
+            }
+          }}
+          viewport={{ once: false }}
           className="w-full rounded-xl border-[1px] border-gray-500 p-6 text-left"
         >
           <div className="flex items-center gap-2">
@@ -144,10 +105,10 @@ const Pricing = () => {
                 className="my-0 text-5xl font-semibold text-gray-900 dark:text-gray-100"
               >
                 <span>
-                  €{billingCycle === "M" ? plan.monthlyPrice : plan.annualPrice}
+                  €{billingCycle === "M" ? plan.monthlyPrice : plan.dayPrice}
                 </span>
                 <span className="text-sm font-medium">
-                  /{billingCycle === "M" ? "mois" : "an"}
+                  /{billingCycle === "M" ? "mois" : "jours"}
                 </span>
               </motion.p>
             </AnimatePresence>
@@ -167,7 +128,7 @@ const Pricing = () => {
               <span className="text-sm text-stone-100">{feature}</span>
             </div>
           ))}
-        </div>
+        </motion.div>
       ))}
     </motion.div>
   );
