@@ -20,7 +20,7 @@ const pricingPlans = [
       "Blogs et réseaux sociaux SEO optimisés",
       "Formulaire de contact",
       "Site web responsive",
-      "Domaine + hébergement gratuit (1 an)",
+      "Domaine + hébergement gratuit ",
       "Support et maintenance",
     ],
   },
@@ -62,13 +62,26 @@ const Pricing = () => {
   const Heading = () => (
     <div className="relative z-10 my-12 flex flex-col items-center justify-center gap-4">
       <div className="flex w-full flex-col items-start justify-center space-y-4 md:items-center">
-        <p className="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl dark:text-white font-marcellus">
+      <motion.h2
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-marcellus text-start mb-4 text-white"
+        >
           Prix équitable, avantage inégalable.
-        </p>
-        <p className="text-md max-w-xl text-gray-700 md:text-center dark:text-gray-300">
+        </motion.h2>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="flex items-baseline mb-16"
+        >
+          <div className="w-16 h-0.5 bg-white mr-4" />
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-pinyon-script text-white font-thin ">
           Commencez aujourd&apos;hui et faites passer votre entreprise au niveau
           supérieur.
-        </p>
+        </h3>
+        </motion.div>
       </div>
       <div className="flex items-center justify-center gap-3">
         <button
@@ -77,7 +90,7 @@ const Pricing = () => {
           className={`rounded-lg px-4 py-2 text-sm font-medium ${
             billingCycle === "M"
               ? "bg-white text-black"
-              : "text-white bg-black hover:bg-white"
+              : "text-white bg-black hover:bg-white/80"
           }`}
         >
           Monthly
@@ -89,7 +102,7 @@ const Pricing = () => {
           className={`rounded-lg px-4 py-2 text-sm font-medium ${
             billingCycle === "A"
               ? "bg-white text-black"
-              : "bg-mutedtext-muted-foreground"
+              : "text-white bg-black hover:bg-black/80"
           }`}
         >
           Annual
