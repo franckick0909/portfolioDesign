@@ -4,6 +4,35 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import MagneticButton from "@/components/magneticButton";
 import { ScaleButton } from "@/components/scaleButton";
+import type { Metadata } from "next";
+import Arrow from "@/components/arrow";
+
+export const metadata: Metadata = {
+  title: "Franck Chapelon | Développeur web front-end",
+  description: "Franck Chapelon est un développeur web front-end basé en Aquitaine.",
+  keywords: ["développement web", "front-end", "Aquitaine"],
+  authors: [{ name: "Franck Chapelon" }],
+  creator: "Franck Chapelon",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://www.franckchapelon.com",
+    siteName: "Franck Chapelon Design",
+    images: [
+      {
+        url: "https://www.franckchapelon.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Franck Chapelon Design",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@FranckChapelon",
+    creator: "@FranckChapelon",
+  },
+};
 
 export default function Plus() {
   return (
@@ -26,12 +55,12 @@ export default function Plus() {
               
               <div className="pl-8">
                 <h3 className="text-2xl font-bold mb-4">Qui suis-je</h3>
-                <p>Je m'appelle [Votre Nom] et je suis un développeur web passionné. Je crée des expériences web uniques et engageantes.</p>
+                <p>Je m&apos;appelle Franck Chapelon et je suis un développeur web passionné. Je crée des expériences web uniques et engageantes.</p>
               </div>
               
               <div className="pl-8">
                 <h3 className="text-2xl font-bold mb-4">Ce que je fais</h3>
-                <p>Je suis spécialisé dans le développement front-end, la création d'identités de marque et la conception de sites Web. J'aime relever des défis créatifs et techniques.</p>
+                <p>Je suis spécialisé dans le développement front-end, la création d&apos;identités de marque et la conception de sites Web. J&apos;aime relever des défis créatifs et techniques.</p>
               </div>
               
               <div className="pl-8">
@@ -61,6 +90,9 @@ export default function Plus() {
               href="/contact"
               bg="bg-white"
               className="text-white bg-black hover:text-black flex z-10 whitespace-nowrap relative"
+              icon={<Arrow />}
+              target=""
+              rel=""
             />
           </MagneticButton>
         </div>

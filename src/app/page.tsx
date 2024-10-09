@@ -9,12 +9,13 @@ import Services from "./services/page";
 import A_Propos from "./a_propos/page";
 import HomeLoading from "./homeLoading";
 import StickyCursor from "@/components/stickyCursor";
+import Tarifs from "./tarifs/page";
 const Branding = dynamic(() => import("./branding/page"), { ssr: false });
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
-  const stickyElements = ['h1', 'h2', 'h3', 'img', 'button']; // Ajoutez ici les sélecteurs pour les éléments que vous voulez "sticky"
+  const stickyElements = ['h1', 'h2', 'h3', 'img', 'button', 'a', 'Link']; // Ajoutez ici les sélecteurs pour les éléments que vous voulez "sticky"
 
   useEffect(() => {
     setIsMounted(true);
@@ -65,6 +66,7 @@ export default function Home() {
             <Branding />
             <Projets />
             <Services />
+            <Tarifs />
             <A_Propos />
           </motion.div>
         )}
